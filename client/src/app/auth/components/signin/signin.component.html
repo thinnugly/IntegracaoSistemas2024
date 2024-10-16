@@ -1,0 +1,46 @@
+<div class="container">
+    <mat-card class="custom-card">
+        <mat-card-title class="custom-title">
+          <h6>devWN</h6>
+          <h6><strong>Enter your personal details</strong></h6>
+          <p>Don't have account? <a class="link-info" (click)="signUpView()">Sign up here</a></p>
+        </mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="signIn" (ngSubmit)="onSubmitSignIn()">
+                <mat-form-field appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="Enter your email" formControlName="email" required>
+                  <mat-error *ngIf="signIn.controls['email'].hasError('required') && signIn.controls['email'].touched">
+                    Email is mandatory.
+                  </mat-error>
+                  <mat-error *ngIf="signIn.controls['email'].hasError('email') && signIn.controls['email'].touched">
+                    Invalid email.
+                  </mat-error>
+                </mat-form-field>
+                
+                <mat-form-field appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input matInput type="password" placeholder="Enter your password" formControlName="password" required>
+                  <mat-error *ngIf="signIn.controls['password'].hasError('required') && signIn.controls['password'].touched">
+                    Password is mandatory.
+                  </mat-error>
+                  <mat-error *ngIf="signIn.controls['password'].hasError('minlength') && signIn.controls['password'].touched">
+                    The password must contain at least 6 characters.
+                  </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="accent" [disabled]="signIn.invalid" type="submit">
+                  Sign In
+                </button>
+                <div style="text-align: center;">Or sign in with</div>
+                <div class="button-container">
+                  <button mat-raised-button color="accent" class="half-width-button" type="button">
+                    <i class="fab fa-facebook"></i> Facebook
+                  </button>
+                  <button mat-raised-button color="accent" class="half-width-button" type="button">
+                    <i class="fab fa-google"></i> Google
+                  </button>
+                </div>
+              </form>
+        </mat-card-content>
+    </mat-card>
+</div>
